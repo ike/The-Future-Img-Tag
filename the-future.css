@@ -6,7 +6,7 @@ body {
 }
 
 .text {
-    text-align: justify; 
+    text-align: left; 
     margin: 10px;    
 }
 
@@ -22,17 +22,17 @@ body {
 .button, .button:visited {
     background: #222 url(overlay.png) repeat-x;
     display: inline-block;
-	padding: 5px 10px 6px;
-	color: #fff;
-	text-decoration: none;
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
-	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
-	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
-	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
-	border-bottom: 1px solid rgba(0,0,0,0.25);
-	position: relative;
-	cursor: pointer;
+    padding: 5px 10px 6px;
+    color: #fff;
+    text-decoration: none;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+    border-bottom: 1px solid rgba(0,0,0,0.25);
+    position: relative;
+    cursor: pointer;
     margin-top: 5px;
 }
 
@@ -58,4 +58,25 @@ body {
 .super.button, .super.button:visited { 
     font-size: 34px;
     padding: 8px 14px 9px; 
+}
+
+#results {
+    width: 100%;
+    height: 500px;
+    border: none;
+}
+
+@media screen and (max-width: 420px) {
+    body {
+        max-width: 100%;        
+    }
+
+    .canyousee {
+        font-size: 1.2em;
+        display: block;
+    }
+
+    #results {
+        width: 32px;
+    }
 }

@@ -1,93 +1,100 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>The Future Image Tag</title>
-<link rel="stylesheet" href="the-future.css" />
-<script>
+  <title>The Future Image Tag</title>
 
-_bTestResults = {};
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="420">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1">
 
-var vote;
+  <link rel="stylesheet" href="the-future.css" />
 
-saveVote = function() {
+  <script>
+    _bTestResults = {};
 
-    vote = (v.srcElement.id == "yes") ? 1 : 0;
+    var vote;
 
-    _bTestResults = {
-       'Image Visible': vote
-    }
+    saveVote = function(v) {
 
-    testKey = 'agt1YS1wcm9maWxlcnINCxIEVGVzdBiZsv8KDA';
-    newScript = document.createElement('script'),
-         firstScript = document.getElementsByTagName('script')[0];
-    newScript.src = 'http://www.browserscope.org/user/beacon/' + testKey + '?callback=checkVote';
-    firstScript.parentNode.insertBefore(newScript, firstScript);
-    console.log('saved vote');
-};
+        vote = v;
 
-checkVote = function() {
-    r = (vote === 1) ? "no" : "yes";
-    $("#" + r).fadeOut();
-    console.log('got response');
-};
+        _bTestResults = {
+           'Image Visible': vote
+        }
 
-</script>
+        testKey = 'agt1YS1wcm9maWxlcnINCxIEVGVzdBiZsv8KDA';
+        newScript = document.createElement('script'),
+             firstScript = document.getElementsByTagName('script')[0];
+        newScript.src = 'http://www.browserscope.org/user/beacon/' + testKey + '?callback=checkVote';
+        firstScript.parentNode.insertBefore(newScript, firstScript);
+
+        console.log('saved vote');
+
+    };
+
+    checkVote = function() {
+        r = (vote === 1) ? "no" : "yes";
+        $("#" + r).fadeOut();
+
+        console.log('got response');
+    };
+  </script>
+  
 </head>
+
 <body style="">
-<h1>Future Friendly &lsaquo;img&rsaquo; tags</h1>
+  <h1>Future Friendly &lsaquo;img&rsaquo; tags</h1>
 
-<div class="text">
-<h2>The Problem:</h2>
-<p>The current HTML spec does not allow for multiple image URLs based on screen size, nessesitating the use of complex Javascript hacks to supply smaller images to mobile devices.</p>
+  <div class="text">
 
-<h2>The Solution: </h2>
-<p>&lsaquo;img src=&quot;large-size.jpg&quot;&rsaquo;&lsaquo;source media=&quot;max-width:640px;&quot; src=&quot;mobile-size.jpg&quot;&rsaquo;&lsaquo;/img&rsaquo;</p>
-</div>
-<div>
-<img alt="" src="http://farm4.static.flickr.com/3605/3368380987_f805f667be.jpg" class="responsive-img" id="testImg">
-      <source media="max-width:640px;" src="http://farm4.static.flickr.com/3605/3368380987_f805f667be_t.jpg">
-</img>
-<p class="canyousee">Can you see the image? </p>
-<div onclick="saveVote()" id="yes" class="button green super" >Yes</div>
-<div onclick="saveVote()" id="no" class="button red super">No</div>
-</div>
+    <h2>The Problem:</h2>
+      <p>The current HTML spec does not allow for multiple image URLs based on screen size, nessesitating the use of complex Javascript hacks to supply smaller images to mobile devices.</p>
 
-<hr/>
+    <h2>The Solution: </h2>
+      <script src="https://gist.github.com/1400780.js?file=imgtag.html"></script>
+      <noscript>
+      <p>&lsaquo;img src=&quot;large-size.jpg&quot;&rsaquo;&lsaquo;source media=&quot;max-width:640px;&quot; src=&quot;mobile-size.jpg&quot;&rsaquo;&lsaquo;/img&rsaquo;</p>
+      </noscript>
 
-<div class="text">
-<h2>Explanation:</h2>
-This suggested spec change would create a syntactic placeholder for mobile browsers to find mobile versions of image URLs. Inside each &lsaquo;img&rsaquo; tag would be a &lsaquo;source&rsaquo; tag, containing a "media" and "src" parameter. The "media" parameter would contain the media query string that would trigger the use of the alternate image URL.</p>
-<p>Legacy browsers would simply use the default URL provided by the wrapper &lsaquo;img&rsaquo; tag. Mobile browsers could look for &lsaquo;source&rsaquo; tags contained by &lsaquo;img&rsaquo; tags, and validate the media query to determine which URL to use to load the image.
-</p>
+  </div>
+  <div>
+    <img alt="The Future. 0 to 80 in 1.21 Jiggawatts." src="http://farm4.static.flickr.com/3605/3368380987_f805f667be.jpg" class="responsive-img" id="testImg">
+          <source src="http://farm4.static.flickr.com/3605/3368380987_f805f667be_t.jpg" media="max-width:640px;">
+    </img>
 
-<hr/>
+    <p class="canyousee">Can you see the image? </p>
+      <a href="javascript:saveVote(1)">
+        <div onclick="saveVote()" id="yes" class="button green super" >Yes</div>
+      </a>
+      <a href="javascript:saveVote(0)">
+        <div onclick="saveVote()" id="no" class="button red super">No</div>
+      </a>
+  </div>
 
-<h2>The Results:</h2>
+  <hr/>
 
-<iframe src="http://www.browserscope.org/user/tests/table/agt1YS1wcm9maWxlcnINCxIEVGVzdBiZsv8KDA?o=html&v=top" width="100%" height="500px" style="border: none;"></iframe>
+  <div class="text">
+  <h2>Explanation:</h2>
+    <p>This suggested spec change would create a syntactic placeholder for mobile browsers to find mobile versions of image URLs. Inside each &lsaquo;img&rsaquo; tag would be a &lsaquo;source&rsaquo; tag, containing a "media" and "src" parameter. The "media" parameter would contain the media query string that would trigger the use of the alternate image URL.</p>
+    <p>Legacy browsers would simply use the default URL provided by the wrapper &lsaquo;img&rsaquo; tag. Mobile browsers could look for &lsaquo;source&rsaquo; tags contained by &lsaquo;img&rsaquo; tags, and validate the media query to determine which URL to use to load the image.</p>
 
-<div id="list"></div>
+  <hr/>
 
-</div>
-<hr/>
-<p><a href="http://twitter.com/_crossdiver"><pre>@_crossdiver</pre></a></p>
+  <h2>The Results:</h2>
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+  <iframe src="http://www.browserscope.org/user/tests/table/agt1YS1wcm9maWxlcnINCxIEVGVzdBiZsv8KDA?o=html&v=top" width="100%" height="500px" style="border: none;" ></iframe>
 
-<script>
-    document.getElementById('yes').onclick = saveVote;
-    document.getElementById('no').onclick = saveVote;
+  </div>
+  <hr/>
+  <p>
+    <a href="http://twitter.com/_crossdiver">
+      <pre>@_crossdiver</pre>
+    </a> 
 
-    function getResults() {
-       $.getJSON("http://www.browserscope.org/user/tests/table/agt1YS1wcm9maWxlcnINCxIEVGVzdBiZsv8KDA?o=json&v=top",
-        function(data){
-          $.each(data.results, function(i,UA){
-            content = '<p>' + UA + ' -- Image Visible: ' + UA.summary_score + ' (Count: ' + UA.count + ')</p>';
-            $(content).appendTo("#list");
-          });
-        });
-    }
-</script>
+    Fork on <a href="https://github.com/Crossdiver/The-Future-Img-Tag/">Github</a>
+  </p>
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 
 </body>
 </html>
