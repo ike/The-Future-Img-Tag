@@ -19,6 +19,10 @@ body {
     display: inline;
 }
 
+.vote {
+    text-decoration: none;
+}
+
 .button, .button:visited {
     background: #222 url(overlay.png) repeat-x;
     display: inline-block;
