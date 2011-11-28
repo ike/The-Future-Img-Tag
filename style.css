@@ -19,10 +19,6 @@ body {
     display: inline;
 }
 
-.vote {
-    text-decoration: none;
-}
-
 .button, .button:visited {
     background: #222 url(overlay.png) repeat-x;
     display: inline-block;
@@ -54,6 +50,13 @@ body {
     background-color: #cf2525; 
 }
 
+.blue.button, .blue.button:visited {
+    background-color: #1d72c1; 
+}
+.blue.button:hover {
+    background-color: #1d72c1; 
+}
+
 .large.button, .large.button:visited { 
     font-size: 14px;
     padding: 8px 14px 9px; 
@@ -62,6 +65,18 @@ body {
 .super.button, .super.button:visited { 
     font-size: 34px;
     padding: 8px 14px 9px; 
+}
+
+.wide.button, .wide.button:visited { 
+    font-size: 34px;
+    padding: 8px 14px 9px; 
+    text-align: center;
+    display: block;
+}
+
+.nodecor {
+  text-decoration: none;
+  cursor: pointer;
 }
 
 #results {
